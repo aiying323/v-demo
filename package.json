@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/aiying323/v-demo#readme",
   "devDependencies": {
+    "css-loader": "^0.26.1",
     "domain": "0.0.1",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
@@ -34,6 +35,7 @@
     "gulp-webpack": "^1.5.0",
     "nodejs": "0.0.0",
     "socket.io": "^1.7.2",
+    "style-loader": "^0.13.1",
     "vinyl-named": "^1.1.0",
     "vue": "^2.1.5",
     "vue-loader": "^10.0.2",

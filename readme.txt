@@ -70,9 +70,11 @@ npm install vue --save[--save-dev]
 npm install vue-loader --save[--save-dev] 用于识别.vue后缀的文件
 npm install vue-router --save[--save-dev] 前端路由
 vue-router dependency
-npm install css-loader --save[--save-dev] 
+npm install css-loader --save[--save-dev] 用于识别.css后缀的文件
 npm install vue-template-compiler --save[--save-dev] vue动态模板加载编译器
 
+npm install style-loader --save[--save-dev] 用于识别 style的文件
+备注：*-loader 是webpack用于文件后缀识别和文件转换的 通常以 xx-loader的形式
 ===========================  项目依赖的环境 end ===========================  
 Written in 2016-12-13
 Author by ying.li
@@ -98,3 +100,8 @@ router.get("/",function(req,res){
 })
 express().use("/router",router);第一个参数是指定前置路由，只有满足前置路由条件的请求才会进入router路由
 ===========================  关于express.Router的介绍 end ===========================  
+===========================  关于webpack的介绍 start ===========================  
+webpack默认情况下会检索：webpack.config.js文件,该文件是一个nodejs的模块，在package.json中配置webpack的依赖。
+创建webpack.config.js内容如下:
+
+===========================  关于webpack的介绍 end ===========================
