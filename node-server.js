@@ -17,6 +17,8 @@ global.$http = require("./lib/util/http-util.js");
 /*封装的json获取对象值方法*/
 global.$JSON = require("./lib/util/json-util.js");
 
+let ejs = require('ejs');
+
 let express = require("express");
 let app=express();
 app.all("/*",function(req,res,next){
@@ -51,6 +53,16 @@ app.use("/status",function(req,res){
 app.use("/status2",function(req,res){
 	res.status(404).json({errorCode:404,msg:"page not found"})
 });
+
+
+
+app.use(express.static(__dirname + '/dist')); //指定静态HTML文件的位置
+app.engine('.html', ejs.__express); //使用ejs引擎渲染html；直接发送：res.sendfile(__dirname+"/static/index.html");
+app.set('view engine', 'html');
+
+app.use("/app",function(req,res){
+	res.render("../src/app.html");
+});
 let router=express.Router();
 router.use(function(req,res,next){
 	console.log('router层的拦截');
@@ -67,3 +79,39 @@ router.get("/rule_index",function(req,res){
 })
 app.use("/router",router);
 app.listen(config.port, config.host);
+
+
+
+
+//404错误处理
+function send404(response){
+    response.writeHead(404, {'Content-Type': 'text/plain'});
+    response.write('Error 404: Resource not found');
+    response.end();
+}
+//文件数据服务
+function sendFile(response, filePath, fileContents){
+    response.writeHead(200, {'Contet-Type': mime.lookup(path.basename(filePath))});
+    response.end(fileContents);
+}
+//静态文件服务
+function serveStatic(response, cache, absPath){
+    if(cache[absPath] && cache_config){
+    	sendFile(response, absPath, cache[absPath]);
+    }else{
+    	fs.exists(absPath, function(exists){
+    		if(exists){
+    			fs.readFile(absPath, function(err, data){
+    				if(err){
+    					send404(response);
+    				}else{
+    					cache[absPath] = data;
+    					sendFile(response, absPath, data);
+    				}
+    			});
+    		}else{
+    			send404(response);
+    		}
+    	});
+    }
+}

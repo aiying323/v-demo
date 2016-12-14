@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="imagemode" content="force">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="keywords" content="xxxx" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="Copyright &copy;dialog " />
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    
+
+    <script >
+        window.addEventListener(('orientationchange' in window ? 'orientationchange' : 'resize'), (function() {
+            function c() {
+                var d = document.documentElement;
+                var cw = d.clientWidth || 750;
+                d.style.fontSize = (20 * (cw / 375)) > 40 ? 40 + 'px' : (20 * (cw / 375)) + 'px';
+            }
+
+            c();
+            return c;
+        })(), false);
+    </script>
+    <script>
+    </script>
+</head>
+
+<body>
+helloworld;
+<div id="app"></div>
+<script src="app.js"></script>
+</body>
+
+</html>
